@@ -1,0 +1,33 @@
+.categories {
+  padding: 20px 0;
+}
+.categories__content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.categories__list {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.categorie:not(:last-child) {
+  margin-right: 25px;
+}
+.categorie a {
+  padding: 7px 10px;
+  color: white;
+  border-radius: 4px;
+  font-family: "Verdana", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color .3s ease-in-out;
+}
+.categorie a:hover {
+  background-color: hsla(0,0%,100%,.2);
+}
+.categorie a:active {
+  background-color: hsla(0,0%,100%,.3);
+}

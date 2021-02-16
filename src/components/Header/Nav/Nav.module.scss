@@ -1,0 +1,40 @@
+.nav {
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.nav__item a {
+  padding: 7px 10px;
+  color: white;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Segoe UI", sans-serif;
+  text-transform: uppercase;
+  transition: background-color .3s ease-in-out;
+}
+.nav__item a:hover {
+  background-color: hsla(0,0%,100%,.2);
+}
+.nav__item a:active {
+  background-color: hsla(0,0%,100%,.35);
+}
+.nav__item:not(:last-child) {
+  margin-right: 10px;
+}
+
+@media only screen and (max-width: 390px) {
+  .nav__item {
+    a {
+      font-size: 14px;
+    }
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .nav {
+    margin-top: 20px;
+  }
+}

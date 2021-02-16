@@ -1,0 +1,10 @@
+.items {
+  padding: 30px 0;
+}
+.items__content {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

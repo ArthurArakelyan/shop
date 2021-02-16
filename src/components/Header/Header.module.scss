@@ -1,0 +1,41 @@
+.header {
+  padding: 20px 0;
+  background-color: hsla(0,0%,0%,.15);
+}
+.header__content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__logo {
+  color: white;
+  font-size: 30px;
+  font-family: Dialog, sans-serif;
+
+  span {
+    margin-left: 15px;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  .header__logo {
+    font-size: 24px;
+
+    span {
+      margin-left: 10px;
+    }
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .header__content {
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+  .header__logo {
+    span {
+      margin-left: 13px;
+    }
+  }
+}

@@ -1,0 +1,125 @@
+.item__details {
+  padding: 40px 0;
+}
+.item__details_content {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: white;
+  position: relative;
+}
+.item__details_image {
+  width: 400px;
+  height: 300px;
+  border: 1px solid hsla(0, 0, 100%, 0.3);
+  border-radius: 4px;
+  padding: 8px 5px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+  }
+}
+.item__details_info {
+  margin-left: 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.item__details_info_name {
+  font-size: 18px;
+  font-weight: 700;
+}
+.item__details_info_description {
+  width: 85%;
+  line-break: anywhere;
+  line-height: 20px;
+  margin-top: 15px;
+  font-family: "Adobe Garamond Pro", sans-serif;
+}
+.item__details_info_cost {
+  margin-top: 15px;
+  font-weight: 700;
+
+  span {
+    margin-left: 2px;
+  }
+}
+.item__details_info_amount {
+  margin-top: 15px;
+
+  span {
+    margin: 0 10px;
+  }
+
+  button {
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    font-size: 10px;
+    padding: 3px 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: background-color .2s ease-in-out;
+  }
+  button:hover {
+    background-color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+  }
+  button:active {
+    background-color: rgba(255, 255, 255, 0.88);
+  }
+}
+.item__details_info_add {
+  font-size: 14px;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: hsla(0,0%,100%,.4);
+  transition: background-color .2s ease-in-out;
+
+  i {
+    margin-left: 6px;
+  }
+}
+.item__details_info_add:hover {
+  background-color: hsla(0,0%,100%,.2);
+  cursor: pointer;
+}
+.item__details_info_add:active {
+  background-color: hsla(0,0%,100%,.35);
+}
+.item__details_back {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  color: white;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 552px) {
+  .item__details_content {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .item__details_info {
+    margin-left: 0;
+    margin-top: 15px;
+  }
+  .item__details_image {
+    width: 100%;
+  }
+  .item__details_info_description {
+    width: 100%;
+  }
+  .item__details_back {
+    top: -6%;
+  }
+}
