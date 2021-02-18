@@ -21,7 +21,7 @@ const App = ({itemLoadAction, cartItems}) => {
         <Switch>
           {categories.map(c => {
             return (
-              <Route exact path={c.link} render={() => {
+              <Route key={c.id} exact path={c.link} render={() => {
                 return (
                   <>
                     <Categories />
