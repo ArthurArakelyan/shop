@@ -9,7 +9,6 @@ import {
 import {itemAddToCartAction, removeFromCartAction} from '../../store/cart/actions';
 
 import styles from './ItemDetails.module.scss';
-import {Link} from "react-router-dom";
 
 const ItemDetails = (props) => {
   const {id} = props;
@@ -37,12 +36,8 @@ const ItemDetails = (props) => {
     <div className={styles.item__details}>
       <div className="wrapper">
         <div className={styles.item__details_content}>
-          <Link className={styles.item__details_back} to='/'>
-            <i className="fas fa-long-arrow-alt-left" />
-          </Link>
-
           <div className={styles.item__details_image}>
-            <img src={item.image} alt="Item"/>
+            <img src={item.image} alt={item.name} />
           </div>
           <div className={styles.item__details_info}>
             <h3 className={styles.item__details_info_name}>{item.name}</h3>

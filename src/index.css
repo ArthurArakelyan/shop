@@ -32,7 +32,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
   line-height: 1;
-  background-color: rgb(0, 121, 191);
+  background-color: #484848;
 }
 ol, ul {
   list-style: none;

@@ -5,6 +5,7 @@ import {Switch, Route} from "react-router-dom";
 import {itemLoadAction} from './store/shop/actions';
 
 import items from "./constants/items";
+import categories from "./constants/categories";
 
 import Header from "./components/Header";
 import Categories from "./components/Categories";
@@ -18,14 +19,20 @@ const App = ({itemLoadAction, cartItems}) => {
       <Header />
       <main>
         <Switch>
-          <Route exact path='/' render={() => {
+          {categories.map(c => {
             return (
-              <>
-                <Categories />
-                <Items />
-              </>
+              <Route exact path={c.link} render={() => {
+                return (
+                  <>
+                    <Categories />
+                    <Items
+                      filter={c.label === 'all' ? '' : c.label}
+                    />
+                  </>
+                )
+              }} />
             )
-          }} />
+          })}
 
           <Route path='/item/:id' render={({match: {params}}) => {
             const inCart = cartItems.find(item => item.id === params.id);

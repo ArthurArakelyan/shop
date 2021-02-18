@@ -95,13 +95,6 @@
 .item__details_info_add:active {
   background-color: hsla(0,0%,100%,.35);
 }
-.item__details_back {
-  position: absolute;
-  top: -10%;
-  left: 0;
-  color: white;
-  font-size: 16px;
-}
 
 @media only screen and (max-width: 552px) {
   .item__details_content {
@@ -118,8 +111,5 @@
   }
   .item__details_info_description {
     width: 100%;
-  }
-  .item__details_back {
-    top: -6%;
   }
 }

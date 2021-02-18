@@ -7,6 +7,7 @@ import watch5 from '../assets/images/watch5.png';
 import watch6 from '../assets/images/watch6.png';
 import watch7 from '../assets/images/watch7.png';
 import watch8 from '../assets/images/watch8.png';
+import watch9 from '../assets/images/watch9.png';
 
 import {nanoid} from "nanoid";
 
@@ -16,7 +17,7 @@ function createItem(
   image = '',
   cost = 100,
   description = '',
-  type = 'normal'
+  type = 'standard'
 ) {
   return {
     id,
@@ -36,7 +37,8 @@ let items = [
   createItem('lasfgno46_', 'Piraso', watch5, 70, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam minima obcaecati quia voluptates'),
   createItem('baqfgha8', 'Apple Watch Series 3', watch6, 200, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias atque debitis dolorum ea, eaque eligendi eos facere ipsum itaque laborum maxime natus necessitatibus nesciunt, obcaecati provident repudiandae sapiente ullam!', 'smart'),
   createItem('mzatqtygd56', 'Casio G-Shock', watch7, 150, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cum cumque enim esse et non perferendis perspiciatis, placeat quam unde. Adipisci eaque eveniet neque officia soluta. Ab, at.', 'smart'),
-  createItem('atqweqtgq_25', 'Timewear', watch8, 50, 'Lorem ipsum dolor sit amet, consectetur adipisicing.')
+  createItem('atqweqtgq_25', 'Timewear', watch8, 50, 'Lorem ipsum dolor sit amet, consectetur adipisicing.'),
+  createItem('F22ragasq', 'Realme Watch S', watch9, 100, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, iste odio!', 'smart')
 ];
 
 export default items;

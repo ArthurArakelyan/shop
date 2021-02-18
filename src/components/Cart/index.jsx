@@ -2,8 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import Back from "../common/Back";
-
 import {buyItemsAction} from '../../store/cart/actions';
 
 import styles from './Cart.module.scss';
@@ -74,8 +72,6 @@ const Cart = (props) => {
     <div className={styles.cart}>
       <div className="wrapper">
         <div className={styles.cart__content}>
-          <Back to='/' top='3%' />
-
           {isCartLength ? content : emptyContent}
         </div>
       </div>
