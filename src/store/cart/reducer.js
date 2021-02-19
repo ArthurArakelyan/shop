@@ -1,4 +1,4 @@
-import {ADD_TO_CART, REMOVE_FROM_CART, BUY_ITEMS} from './actionTypes';
+import {ADD_TO_CART, REMOVE_FROM_CART, BUY_ITEMS, CLEAR_ITEMS} from './actionTypes';
 
 const initialState = [];
 
@@ -19,6 +19,9 @@ const reducer = (state = initialState, action = {}) => {
       return state.filter(item => item.id !== action.payload.id);
     }
     case BUY_ITEMS: {
+      return [];
+    }
+    case CLEAR_ITEMS: {
       return [];
     }
     default: {

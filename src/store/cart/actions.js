@@ -1,4 +1,4 @@
-import {ADD_TO_CART, REMOVE_FROM_CART, BUY_ITEMS} from "./actionTypes";
+import {ADD_TO_CART, REMOVE_FROM_CART, BUY_ITEMS, CLEAR_ITEMS} from "./actionTypes";
 
 export function itemAddToCartAction(item) {
   return {
@@ -21,5 +21,11 @@ export function removeFromCartAction(id) {
 export function buyItemsAction() {
   return {
     type: BUY_ITEMS
+  }
+}
+
+export function clearItemsAction() {
+  return {
+    type: CLEAR_ITEMS
   }
 }

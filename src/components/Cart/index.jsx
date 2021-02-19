@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import {buyItemsAction} from '../../store/cart/actions';
+import {buyItemsAction, clearItemsAction} from '../../store/cart/actions';
 
 import styles from './Cart.module.scss';
 
@@ -13,14 +13,13 @@ const Cart = (props) => {
   const onBuy = () => {
     if(isCartLength) {
       props.buyItemsAction();
-      alert('Buyed');
     } else {
       alert('Your Cart Is Empty');
     }
   }
 
   const onClear = () => {
-    props.buyItemsAction();
+    props.clearItemsAction();
   }
 
   const content = (
@@ -87,7 +86,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    buyItemsAction: () => dispatch(buyItemsAction())
+    buyItemsAction: () => dispatch(buyItemsAction()),
+    clearItemsAction: () => dispatch(clearItemsAction())
   }
 }
 
