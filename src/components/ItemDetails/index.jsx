@@ -1,36 +1,56 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React, {useEffect, useCallback} from 'react';
+import {useSelector, useDispatch} from "react-redux";
 
 import {
   itemAmountIncrementAction,
-  itemAmountDecrementAction
+  itemAmountDecrementAction,
+  itemLoadAction
 } from '../../store/shop/actions';
 
 import {itemAddToCartAction, removeFromCartAction} from '../../store/cart/actions';
 
 import styles from './ItemDetails.module.scss';
+import items from "../../constants/items";
 
-const ItemDetails = (props) => {
-  const {id} = props;
-  const {item, cartItems} = props;
+const ItemDetails = ({match: {params: {id}}}) => {
+  const {shopReducer: item, cartReducer: cartItems} = useSelector(state => state);
+  const dispatch = useDispatch();
+
+  const itemLoad = useCallback(
+    (item) => dispatch(itemLoadAction(item)),
+    [dispatch]
+  );
 
   const inCart = cartItems.find(i => i.id === id);
 
-  const onIncrementClick = () => {
-    props.itemAmountIncrementAction();
-  }
+  useEffect(() => {
+    if(inCart) {
+      itemLoad(inCart);
+    } else {
+      itemLoad(items.find(item => item.id === id));
+    }
+  }, []);
 
-  const onDecrementClick = () => {
-    props.itemAmountDecrementAction();
-  }
 
-  const onAddToCartClick = () => {
-    props.itemAddToCartAction(item);
-  }
+  const onIncrement = useCallback(
+    () => dispatch(itemAmountIncrementAction()),
+    [dispatch]
+  );
 
-  const onRemoveFromCartClick = () => {
-    props.removeFromCartAction(item.id);
-  }
+  const onDecrement = useCallback(
+    () => dispatch(itemAmountDecrementAction()),
+    [dispatch]
+  );
+
+  const onAddToCart = useCallback(
+    (item) => dispatch(itemAddToCartAction(item)),
+    [dispatch]
+  );
+
+  const onRemoveFromCart = useCallback(
+    (id) => dispatch(removeFromCartAction(id)),
+    [dispatch]
+  );
 
   return (
     <div className={styles.item__details}>
@@ -48,24 +68,24 @@ const ItemDetails = (props) => {
               </span>
             </p>
             <div className={styles.item__details_info_amount}>
-              <button onClick={onIncrementClick}>
+              <button onClick={onIncrement}>
                 <i className="fa fa-plus" />
               </button>
 
               <span>{item.amount}</span>
 
-              <button onClick={onDecrementClick}>
+              <button onClick={onDecrement}>
                 <i className="fa fa-minus" />
               </button>
             </div>
 
             {!inCart ?
-              <button onClick={onAddToCartClick} className={styles.item__details_info_add}>
+              <button onClick={() => onAddToCart(item)} className={styles.item__details_info_add}>
                 Add To Cart
                 <i className="fas fa-cart-plus" />
               </button>
               :
-              <button onClick={onRemoveFromCartClick} className={styles.item__details_info_add}>
+              <button onClick={() => onRemoveFromCart(item.id)} className={styles.item__details_info_add}>
                 Remove From Cart
                 <i className="fas fa-cart-arrow-down" />
               </button>
@@ -77,20 +97,4 @@ const ItemDetails = (props) => {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    item: state.shopReducer,
-    cartItems: state.cartReducer
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    itemAmountIncrementAction: () => dispatch(itemAmountIncrementAction()),
-    itemAmountDecrementAction: () => dispatch(itemAmountDecrementAction()),
-    itemAddToCartAction: (item) => dispatch(itemAddToCartAction(item)),
-    removeFromCartAction: (id) => dispatch(removeFromCartAction(id))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ItemDetails);
+export default ItemDetails;

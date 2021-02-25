@@ -1,5 +1,5 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React, {useCallback} from 'react';
+import {useSelector, useDispatch} from "react-redux";
 import {Link} from 'react-router-dom';
 
 import {buyItemsAction, clearItemsAction} from '../../store/cart/actions';
@@ -7,20 +7,26 @@ import {buyItemsAction, clearItemsAction} from '../../store/cart/actions';
 import styles from './Cart.module.scss';
 
 const Cart = (props) => {
-  const {items} = props;
+  const items = useSelector(state => state.cartReducer);
+  const dispatch = useDispatch();
+
   const isCartLength = items.length;
 
-  const onBuy = () => {
-    if(isCartLength) {
-      props.buyItemsAction();
-    } else {
-      alert('Your Cart Is Empty');
-    }
-  }
+  const onBuy = useCallback(
+    () => {
+      if(isCartLength) {
+        dispatch(buyItemsAction());
+      } else {
+        alert('Your Cart Is Empty');
+      }
+    },
+    [dispatch]
+  );
 
-  const onClear = () => {
-    props.clearItemsAction();
-  }
+  const onClear = useCallback(
+    () => dispatch(clearItemsAction()),
+    [dispatch]
+  );
 
   const content = (
     <>
@@ -78,17 +84,4 @@ const Cart = (props) => {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    items: state.cartReducer
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    buyItemsAction: () => dispatch(buyItemsAction()),
-    clearItemsAction: () => dispatch(clearItemsAction())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default Cart;

@@ -1,5 +1,5 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React, {useCallback} from 'react';
+import {useSelector, useDispatch} from "react-redux";
 import {Switch, Route} from "react-router-dom";
 
 import {itemLoadAction} from './store/shop/actions';
@@ -13,7 +13,15 @@ import Items from "./components/Items";
 import ItemDetails from "./components/ItemDetails";
 import Cart from "./components/Cart";
 
-const App = ({itemLoadAction, cartItems}) => {
+const App = () => {
+  const cartItems = useSelector(state => state.cartReducer);
+  const dispatch = useDispatch();
+
+  const itemLoad = useCallback(
+    (item) => dispatch(itemLoadAction(item)),
+    [dispatch]
+  );
+
   return (
     <div className="App">
       <Header />
@@ -34,16 +42,7 @@ const App = ({itemLoadAction, cartItems}) => {
             )
           })}
 
-          <Route path='/item/:id' render={({match: {params}}) => {
-            const inCart = cartItems.find(item => item.id === params.id);
-            if(inCart) {
-              itemLoadAction(inCart);
-            } else {
-              itemLoadAction(items.find(item => item.id === params.id));
-            }
-
-            return <ItemDetails id={params.id} />;
-          }} />
+          <Route path='/item/:id' component={ItemDetails} />
 
           <Route path='/cart' component={Cart} />
         </Switch>
@@ -52,16 +51,4 @@ const App = ({itemLoadAction, cartItems}) => {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    cartItems: state.cartReducer
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    itemLoadAction: (item) => dispatch(itemLoadAction(item))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
