@@ -1,10 +1,6 @@
-import React, {useCallback} from 'react';
-import {useSelector, useDispatch} from "react-redux";
+import React from 'react';
 import {Switch, Route} from "react-router-dom";
 
-import {itemLoadAction} from './store/shop/actions';
-
-import items from "./constants/items";
 import categories from "./constants/categories";
 
 import Header from "./components/Header";
@@ -14,14 +10,6 @@ import ItemDetails from "./components/ItemDetails";
 import Cart from "./components/Cart";
 
 const App = () => {
-  const cartItems = useSelector(state => state.cartReducer);
-  const dispatch = useDispatch();
-
-  const itemLoad = useCallback(
-    (item) => dispatch(itemLoadAction(item)),
-    [dispatch]
-  );
-
   return (
     <div className="App">
       <Header />
