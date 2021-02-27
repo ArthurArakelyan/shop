@@ -1,4 +1,4 @@
-import React, {useEffect, useCallback} from 'react';
+import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from "react-redux";
 
 import {
@@ -16,10 +16,7 @@ const ItemDetails = ({match: {params: {id}}}) => {
   const {shopReducer: item, cartReducer: cartItems} = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const itemLoad = useCallback(
-    (item) => dispatch(itemLoadAction(item)),
-    [dispatch]
-  );
+  const itemLoad = (item) => dispatch(itemLoadAction(item));
 
   const inCart = cartItems.find(i => i.id === id);
 
@@ -31,26 +28,13 @@ const ItemDetails = ({match: {params: {id}}}) => {
     }
   }, []);
 
+  const onIncrement = () => dispatch(itemAmountIncrementAction());
 
-  const onIncrement = useCallback(
-    () => dispatch(itemAmountIncrementAction()),
-    [dispatch]
-  );
+  const onDecrement = () => dispatch(itemAmountDecrementAction());
 
-  const onDecrement = useCallback(
-    () => dispatch(itemAmountDecrementAction()),
-    [dispatch]
-  );
+  const onAddToCart = (item) => dispatch(itemAddToCartAction(item));
 
-  const onAddToCart = useCallback(
-    (item) => dispatch(itemAddToCartAction(item)),
-    [dispatch]
-  );
-
-  const onRemoveFromCart = useCallback(
-    (id) => dispatch(removeFromCartAction(id)),
-    [dispatch]
-  );
+  const onRemoveFromCart = (id) => dispatch(removeFromCartAction(id));
 
   return (
     <div className={styles.item__details}>

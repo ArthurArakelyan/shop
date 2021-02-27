@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {useSelector, useDispatch} from "react-redux";
 import {Link} from 'react-router-dom';
 
@@ -6,27 +6,21 @@ import {buyItemsAction, clearItemsAction} from '../../store/cart/actions';
 
 import styles from './Cart.module.scss';
 
-const Cart = (props) => {
+const Cart = () => {
   const items = useSelector(state => state.cartReducer);
   const dispatch = useDispatch();
 
   const isCartLength = items.length;
 
-  const onBuy = useCallback(
-    () => {
-      if(isCartLength) {
-        dispatch(buyItemsAction());
-      } else {
-        alert('Your Cart Is Empty');
-      }
-    },
-    [dispatch]
-  );
+  const onBuy = () => {
+    if(isCartLength) {
+      dispatch(buyItemsAction());
+    } else {
+      alert('Your Cart Is Empty');
+    }
+  }
 
-  const onClear = useCallback(
-    () => dispatch(clearItemsAction()),
-    [dispatch]
-  );
+  const onClear = () => dispatch(clearItemsAction());
 
   const content = (
     <>
